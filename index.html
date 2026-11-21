@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://raw.githubusercontent.com; img-src 'self' data:; style-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'">
+<title>小江戸ゲーム部のゲーム</title>
+<meta name="description" content="遊ぶうちに知識が身につく、無料のブラウザゲームの一覧。法律・お金・防災・理科・ことば・パズルなど、ジャンル別に探せます。">
+<meta property="og:title" content="小江戸ゲーム部のゲーム">
+<meta property="og:description" content="遊ぶうちに知識が身につく、無料のブラウザゲームの一覧。ジャンル別に探せます。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://satou-aaaaa.github.io/games/">
+<link rel="stylesheet" href="style.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<header class="top">
+  <h1>小江戸ゲーム部のゲーム</h1>
+  <p class="lead">遊ぶうちに知識が身につく、無料のブラウザゲーム <strong id="count">198</strong> 本。登録なしで、スマホでもすぐ遊べます。</p>
+</header>
+<main>
+  <section class="pick" aria-labelledby="pick-h">
+    <h2 id="pick-h">今日の1本</h2>
+    <a id="pick" class="pick-card" href="#">
+      <span class="pick-title" id="pick-title">…</span>
+      <span class="pick-field" id="pick-field"></span>
+      <span class="pick-go">遊ぶ →</span>
+    </a>
+  </section>
+  <section class="finder" aria-label="ゲームを探す">
+    <label for="q" class="q-label">名前やことばで探す</label>
+    <input id="q" type="search" placeholder="例：税、地震、漢字" autocomplete="off">
+    <div id="genres" class="genres" role="group" aria-label="ジャンル"></div>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+  </section>
+  <div id="list"></div>
+</main>
+<footer class="foot">
+  <p>ゲームはすべて無料・広告なしです。気に入ったら <a href="https://ko-fi.com/satouaaaaa" rel="noopener">Ko-fi で応援</a>していただけるとうれしいです。</p>
+  <p>X：<a href="https://x.com/coedogameclub" rel="noopener">@coedogameclub</a>　／　この一覧は新作が出ると自動で増えます。</p>
+</footer>
+</body>
+</html>
