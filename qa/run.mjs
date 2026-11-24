@@ -15,6 +15,15 @@ const g = JSON.parse(readFileSync(path.join(root, "genres.json"), "utf8"));
 const snap = JSON.parse(readFileSync(path.join(root, "games.json"), "utf8"));
 const gids = new Set(g.genres.map((x) => x.id));
 
+// ---- 0. 使わない言葉 ----
+// 一覧に出さないと決めた言葉（2026-11-24 satou さん「ゲーム一覧で『小江戸ゲーム部』という言葉を使わない」）。
+// ファイルと、ブラウザで出た画面の文字の両方を見る（表の元データから入っても気づけるように）。
+const BANNED = ["小江戸ゲーム部"];
+for (const f of ["index.html", "README.md", "AGENTS.md", "app.js", "list.js", "games.json", "genres.json", "style.css"]) {
+  const hit = BANNED.filter((w) => readFileSync(path.join(root, f), "utf8").includes(w));
+  check(`${f} に使わない言葉が無い`, hit.length === 0, hit.join(","));
+}
+
 // ---- 1. 部品 ----
 check("repos.txt は種類 game だけ読む", JSON.stringify(parseRepos("# c\na-b game\nc app\nd game # x\n")) === '["a-b","d"]');
 const md = "## x\n| a | b |\n### ゲーム\n\n| プロジェクト | 分野 |\n| --- | --- |\n| aa-bb（あいう（え）） | 学習ゲーム（くらし・税） | z |\n### 次\n| cc（ちがう） | x | y |\n";
@@ -82,6 +91,8 @@ async function open(live, width = 1024, hash = "") {
   await page.fill("#q", "ぜったいにないことば");
   check("見つからないときは知らせる", (await page.$(".empty")) !== null);
   check("ブラウザのエラーが無い", errors.length === 0, errors.join(" / "));
+  const shown = (await page.title()) + (await page.textContent("body"));
+  check("画面に使わない言葉が出ない", BANNED.every((w) => !shown.includes(w)), BANNED.filter((w) => shown.includes(w)).join(","));
   await page.close();
 }
 {
