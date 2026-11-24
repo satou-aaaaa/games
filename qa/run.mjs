@@ -16,9 +16,9 @@ const snap = JSON.parse(readFileSync(path.join(root, "games.json"), "utf8"));
 const gids = new Set(g.genres.map((x) => x.id));
 
 // ---- 0. 使わない言葉 ----
-// 一覧に出さないと決めた言葉（2026-11-24 satou さん「ゲーム一覧で『小江戸ゲーム部』という言葉を使わない」）。
+// 一覧に出さないと決めた言葉（2026-11-24 satou さん「ゲーム一覧で『小江戸ゲーム部』という言葉を使わない」「Xへのリンクも外して」）。
 // ファイルと、ブラウザで出た画面の文字の両方を見る（表の元データから入っても気づけるように）。
-const BANNED = ["小江戸ゲーム部"];
+const BANNED = ["小江戸ゲーム部", "coedogameclub"];
 for (const f of ["index.html", "README.md", "AGENTS.md", "app.js", "list.js", "games.json", "genres.json", "style.css"]) {
   const hit = BANNED.filter((w) => readFileSync(path.join(root, f), "utf8").includes(w));
   check(`${f} に使わない言葉が無い`, hit.length === 0, hit.join(","));
