@@ -9,7 +9,7 @@ Claude・Codex・Gemini・Copilot など、どの AI でも、人でも、ここ
 - 読めないときは同梱の控え `games.json` を出す。控えは `node scripts/snapshot.mjs ../shared-workflows` で作り直す。
 - ジャンルは `genres.json`。`map`（名前→ジャンル）が人の決めた分け方。`map` に無い新作は `rules`（分野の言葉）で決まり、どれにも合わなければ「その他」。ずれていたら `map` に1行足す。
 - 外へ通信するのは raw.githubusercontent.com だけ（CSP の connect-src）。広げない。
-- 前の部の名前は出さない（2026-11-24 satou さん。言葉は `qa/run.mjs` の BANNED）。題は「学べる無料ゲーム一覧」。`qa/run.mjs` の BANNED がファイルと画面を見る。出さない言葉が増えたら BANNED に足す。
+- 前の部の名前と X のアカウントは出さない（2026-11-24 satou さん。言葉は `qa/run.mjs` の BANNED）。題は「学べる無料ゲーム一覧」。`qa/run.mjs` の BANNED がファイルと画面を見る。出さない言葉が増えたら BANNED に足す。
 
 ## push する前の確認
 
